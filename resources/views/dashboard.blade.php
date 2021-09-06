@@ -11,6 +11,9 @@
                 <div class="col-xl-12">
                     <div class="card">
                           <div class="card-body">
+                              @php
+                                echo env('MAIL_FROM_ADDRESS');
+                              @endphp
                               <div class="row">
                                 <div id="presenca" class="col-xl-4">
                                    <h5 style="text-align: center;">Canal de Presença</h5>
@@ -39,7 +42,6 @@
         var privado =  document.getElementById("privado");
         var publico =  document.getElementById("publico");
         
-       
         Echo.channel('channel-publico')
           .listen('channelPublico', (e) => {
             publico.innerHTML += "<div class='alert alert-success' >" 
@@ -68,8 +70,7 @@
          })
          .error((error) => {
                 alert(error);
-         })
-         .listen('channelPresenca', (e) =>{
+         }).listen('channelPresenca', (e) =>{
             presenca.innerHTML += "<div class='alert alert-success'>"+ e.mensagem +'</div>';
          });
       </script>
